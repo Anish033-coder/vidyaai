@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1640 1000" width="1640" height="1000" font-family="Inter, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8a8178"/>
+    </marker>
+    <marker id="aHot" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#e4502b"/>
+    </marker>
+    <marker id="aDim" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5c5449"/>
+    </marker>
+  </defs>
+
+  <rect width="1640" height="1000" fill="#0c0a09"/>
+
+  <!-- Title -->
+  <text x="56" y="72" font-family="Georgia, serif" font-size="40" fill="#f7f3ec">VidyaAI</text>
+  <text x="182" y="72" font-family="Georgia, serif" font-size="26" font-style="italic" fill="#e4502b">— syllabus-grounded tutoring on AWS</text>
+  <text x="56" y="104" font-size="14.5" fill="#8a8178">One retrieval + generation pipeline. Five student-facing modes. Every answer cites the passage it came from.</text>
+  <line x1="56" y1="126" x2="1584" y2="126" stroke="#241f1b" stroke-width="1"/>
+
+  <!-- ============ CLIENT ============ -->
+  <text x="56" y="168" font-size="11.5" letter-spacing="1.6" fill="#5c5449">CLIENT</text>
+
+  <rect x="56" y="190" width="216" height="74" rx="8" fill="#13100e" stroke="#332b26"/>
+  <text x="76" y="220" font-size="15.5" fill="#f7f3ec">Student</text>
+  <text x="76" y="242" font-size="12.5" fill="#8a8178">their own course PDFs</text>
+
+  <rect x="56" y="292" width="216" height="104" rx="8" fill="#13100e" stroke="#332b26"/>
+  <text x="76" y="322" font-size="15.5" fill="#f7f3ec">React 19 + Vite</text>
+  <text x="76" y="344" font-size="12.5" fill="#8a8178">JWT in localStorage</text>
+  <text x="76" y="372" font-size="12" fill="#e4502b">AWS Amplify Hosting</text>
+
+  <line x1="164" y1="264" x2="164" y2="292" stroke="#8a8178" stroke-width="1.4" marker-end="url(#a)"/>
+  <path d="M272 344 L336 344" stroke="#8a8178" stroke-width="1.4" marker-end="url(#a)"/>
+  <text x="278" y="334" font-size="11" fill="#8a8178">HTTPS</text>
+
+  <!-- ============ API ============ -->
+  <text x="352" y="168" font-size="11.5" letter-spacing="1.6" fill="#5c5449">APPLICATION</text>
+
+  <rect x="352" y="190" width="392" height="560" rx="10" fill="#13100e" stroke="#332b26"/>
+  <text x="376" y="222" font-size="16" fill="#f7f3ec">Node / Express</text>
+  <text x="376" y="244" font-size="12" fill="#e4502b">AWS App Runner · IAM instance role</text>
+
+  <line x1="376" y1="262" x2="720" y2="262" stroke="#241f1b"/>
+
+  <!-- routes -->
+  <text x="376" y="290" font-size="11.5" letter-spacing="1.2" fill="#5c5449">ROUTES</text>
+  <text x="376" y="316" font-size="13" fill="#d8d1c6">/api/auth · /api/chat · /api/courses · /api/exam</text>
+
+  <!-- modes -->
+  <rect x="376" y="340" width="344" height="66" rx="7" fill="#1a1614" stroke="#332b26"/>
+  <text x="394" y="366" font-size="11.5" letter-spacing="1.2" fill="#5c5449">FIVE MODES</text>
+  <text x="394" y="390" font-size="13" fill="#d8d1c6">Ask · Teach · Quiz · Interview · Exam</text>
+
+  <line x1="548" y1="406" x2="548" y2="440" stroke="#e4502b" stroke-width="1.6" marker-end="url(#aHot)"/>
+  <text x="560" y="428" font-size="11" font-style="italic" font-family="Georgia, serif" fill="#8a8178">all five converge here</text>
+
+  <!-- spine -->
+  <rect x="376" y="440" width="344" height="82" rx="7" fill="#1a1614" stroke="#e4502b" stroke-opacity="0.45"/>
+  <text x="394" y="468" font-size="14.5" fill="#f7f3ec">buildPrompt()</text>
+  <text x="394" y="492" font-size="12" fill="#8a8178">retrieve context + citations, then assemble</text>
+  <text x="394" y="512" font-size="11.5" fill="#5c5449">utils/promptBuilder.js</text>
+
+  <line x1="548" y1="522" x2="548" y2="552" stroke="#e4502b" stroke-width="1.6" marker-end="url(#aHot)"/>
+
+  <rect x="376" y="552" width="344" height="82" rx="7" fill="#1a1614" stroke="#e4502b" stroke-opacity="0.45"/>
+  <text x="394" y="580" font-size="14.5" fill="#f7f3ec">callLLM()</text>
+  <text x="394" y="604" font-size="12" fill="#8a8178">generate, guarded</text>
+  <text x="394" y="624" font-size="11.5" fill="#5c5449">services/llmService.js</text>
+
+  <text x="376" y="672" font-size="11.5" letter-spacing="1.2" fill="#5c5449">RESPONSE</text>
+  <text x="376" y="696" font-size="13" fill="#d8d1c6">{ answer, citations[], mode }</text>
+  <text x="376" y="722" font-size="12" fill="#8a8178">persisted on the Message document</text>
+
+  <!-- return arrow -->
+  <path d="M352 690 L300 690 L300 400" stroke="#8a8178" stroke-width="1.4" fill="none" marker-end="url(#a)"/>
+  <text x="196" y="560" font-size="11" fill="#8a8178">answer + citations</text>
+
+  <!-- ============ AWS ============ -->
+  <text x="824" y="168" font-size="11.5" letter-spacing="1.6" fill="#5c5449">AWS — THE SCORED PATH</text>
+
+  <rect x="824" y="190" width="760" height="410" rx="10" fill="#13100e" stroke="#e4502b" stroke-opacity="0.35"/>
+  <text x="848" y="222" font-size="16" fill="#f7f3ec">Amazon Bedrock</text>
+
+  <!-- ingestion row -->
+  <text x="848" y="258" font-size="11.5" letter-spacing="1.2" fill="#5c5449">INGESTION — ONCE PER COURSE</text>
+
+  <rect x="848" y="274" width="188" height="84" rx="7" fill="#1a1614" stroke="#332b26"/>
+  <text x="866" y="302" font-size="14" fill="#f7f3ec">Amazon S3</text>
+  <text x="866" y="324" font-size="11.5" fill="#8a8178">course PDFs +</text>
+  <text x="866" y="342" font-size="11.5" fill="#8a8178">courseId metadata</text>
+
+  <path d="M1036 316 L1084 316" stroke="#8a8178" stroke-width="1.4" marker-end="url(#a)"/>
+
+  <rect x="1084" y="274" width="200" height="84" rx="7" fill="#1a1614" stroke="#332b26"/>
+  <text x="1102" y="302" font-size="14" fill="#f7f3ec">Knowledge Base</text>
+  <text x="1102" y="324" font-size="11.5" fill="#8a8178">chunk · embed · index</text>
+  <text x="1102" y="342" font-size="11.5" fill="#8a8178">sync on upload</text>
+
+  <path d="M1284 300 L1332 300" stroke="#8a8178" stroke-width="1.4" marker-end="url(#a)"/>
+  <path d="M1284 334 L1332 334" stroke="#8a8178" stroke-width="1.4" marker-end="url(#a)"/>
+
+  <rect x="1332" y="270" width="228" height="42" rx="6" fill="#1a1614" stroke="#332b26"/>
+  <text x="1348" y="296" font-size="12.5" fill="#d8d1c6">Titan Text Embeddings V2</text>
+
+  <rect x="1332" y="320" width="228" height="42" rx="6" fill="#1a1614" stroke="#332b26"/>
+  <text x="1348" y="346" font-size="12.5" fill="#d8d1c6">OpenSearch Serverless</text>
+
+  <line x1="848" y1="384" x2="1560" y2="384" stroke="#241f1b"/>
+
+  <!-- request row -->
+  <text x="848" y="414" font-size="11.5" letter-spacing="1.2" fill="#5c5449">PER REQUEST</text>
+
+  <rect x="848" y="430" width="300" height="70" rx="7" fill="#1a1614" stroke="#332b26"/>
+  <text x="866" y="458" font-size="14" fill="#f7f3ec">Retrieve</text>
+  <text x="866" y="482" font-size="11.5" fill="#8a8178">top-5 chunks, filtered by courseId</text>
+
+  <rect x="848" y="512" width="300" height="70" rx="7" fill="#1a1614" stroke="#332b26"/>
+  <text x="866" y="540" font-size="14" fill="#f7f3ec">Converse</text>
+  <text x="866" y="564" font-size="11.5" fill="#8a8178">Nova Lite / Claude 3.5 Sonnet</text>
+
+  <rect x="1180" y="512" width="380" height="70" rx="7" fill="#1a1614" stroke="#e4502b" stroke-opacity="0.4"/>
+  <text x="1198" y="540" font-size="14" fill="#f7f3ec">Guardrails</text>
+  <text x="1198" y="564" font-size="11.5" fill="#8a8178">denied topics · unsafe content · PII redaction</text>
+
+  <path d="M1148 547 L1180 547" stroke="#e4502b" stroke-width="1.4" marker-end="url(#aHot)"/>
+
+  <rect x="1180" y="430" width="380" height="70" rx="7" fill="#1a1614" stroke="#332b26"/>
+  <text x="1198" y="458" font-size="14" fill="#f7f3ec">Citations returned with every chunk</text>
+  <text x="1198" y="482" font-size="11.5" fill="#8a8178">source document · location · relevance score</text>
+
+  <path d="M1148 465 L1180 465" stroke="#8a8178" stroke-width="1.4" marker-end="url(#a)"/>
+
+  <!-- API -> AWS arrows -->
+  <path d="M720 472 L784 472 L784 465 L848 465" stroke="#e4502b" stroke-width="1.6" fill="none" marker-end="url(#aHot)"/>
+  <text x="744" y="460" font-size="11" fill="#e4502b">1 · retrieve</text>
+
+  <path d="M720 584 L784 584 L784 547 L848 547" stroke="#e4502b" stroke-width="1.6" fill="none" marker-end="url(#aHot)"/>
+  <text x="744" y="600" font-size="11" fill="#e4502b">2 · generate</text>
+
+  <!-- ============ DATA ============ -->
+  <text x="352" y="800" font-size="11.5" letter-spacing="1.6" fill="#5c5449">STATE</text>
+
+  <rect x="352" y="822" width="392" height="120" rx="8" fill="#13100e" stroke="#332b26"/>
+  <text x="376" y="852" font-size="15" fill="#f7f3ec">MongoDB Atlas — two databases</text>
+  <text x="376" y="880" font-size="12.5" fill="#d8d1c6">AI_DB</text>
+  <text x="440" y="880" font-size="12" fill="#8a8178">chats · messages · citations</text>
+  <text x="376" y="906" font-size="12.5" fill="#d8d1c6">LMS_DB</text>
+  <text x="440" y="906" font-size="12" fill="#8a8178">courses · lectures (shared with the LMS)</text>
+  <text x="376" y="930" font-size="11.5" fill="#5c5449">chat history only — never the source of an answer</text>
+
+  <line x1="548" y1="750" x2="548" y2="822" stroke="#8a8178" stroke-width="1.4" marker-end="url(#a)"/>
+
+  <!-- ============ FALLBACK ============ -->
+  <text x="824" y="660" font-size="11.5" letter-spacing="1.6" fill="#5c5449">FALLBACK — WHEN AWS ENV VARS ARE UNSET</text>
+
+  <rect x="824" y="682" width="760" height="150" rx="10" fill="#0f0d0c" stroke="#332b26" stroke-dasharray="5 4"/>
+  <text x="848" y="714" font-size="14" fill="#8a8178">Legacy path, kept so the app still runs without an AWS account</text>
+
+  <rect x="848" y="734" width="220" height="62" rx="6" fill="#13100e" stroke="#241f1b"/>
+  <text x="866" y="760" font-size="12.5" fill="#8a8178">Jina embeddings</text>
+  <text x="866" y="782" font-size="11.5" fill="#5c5449">+ Atlas $vectorSearch</text>
+
+  <rect x="1088" y="734" width="220" height="62" rx="6" fill="#13100e" stroke="#241f1b"/>
+  <text x="1106" y="760" font-size="12.5" fill="#8a8178">Groq llama-3.3-70b</text>
+  <text x="1106" y="782" font-size="11.5" fill="#5c5449">no citations, no guardrails</text>
+
+  <rect x="1328" y="734" width="232" height="62" rx="6" fill="#13100e" stroke="#241f1b"/>
+  <text x="1346" y="760" font-size="12.5" fill="#8a8178">Switched by env flags</text>
+  <text x="1346" y="782" font-size="11.5" fill="#5c5449">BEDROCK_KB_ID · USE_BEDROCK</text>
+
+  <path d="M744 610 L790 610 L790 757 L848 757" stroke="#5c5449" stroke-width="1.3" fill="none" stroke-dasharray="5 4" marker-end="url(#aDim)"/>
+
+  <!-- footer -->
+  <line x1="56" y1="962" x2="1584" y2="962" stroke="#241f1b"/>
+  <text x="56" y="986" font-size="11.5" fill="#5c5449">S3 · Bedrock Knowledge Bases · Titan Text Embeddings V2 · OpenSearch Serverless · Bedrock Converse (Nova / Claude) · Bedrock Guardrails · App Runner · Amplify Hosting</text>
+</svg>

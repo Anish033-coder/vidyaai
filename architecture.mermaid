@@ -1,0 +1,55 @@
+flowchart TB
+  S["Student — their own course PDFs"]
+
+  subgraph CLIENT["Client"]
+    FE["React 19 + Vite<br/>AWS Amplify Hosting"]
+  end
+
+  subgraph API["Node / Express — AWS App Runner (IAM instance role)"]
+    MODES["Five modes<br/>Ask · Teach · Quiz · Interview · Exam"]
+    BP["buildPrompt()<br/>retrieve context + citations"]
+    LLM["callLLM()<br/>generate, guarded"]
+    RESP["answer + citations[] + mode"]
+  end
+
+  subgraph AWS["Amazon Bedrock — the scored path"]
+    S3["Amazon S3<br/>course PDFs + courseId metadata"]
+    KB["Bedrock Knowledge Base<br/>chunk · embed · index"]
+    TITAN["Titan Text Embeddings V2"]
+    OSS["OpenSearch Serverless"]
+    RET["Retrieve<br/>top-5 chunks, filtered by courseId"]
+    CONV["Converse<br/>Nova Lite / Claude 3.5 Sonnet"]
+    GR["Bedrock Guardrails<br/>denied topics · unsafe content · PII"]
+  end
+
+  subgraph DATA["MongoDB Atlas"]
+    AIDB["AI_DB — chats · messages · citations"]
+    LMSDB["LMS_DB — courses · lectures"]
+  end
+
+  subgraph FB["Fallback — when AWS env vars are unset"]
+    JINA["Jina embeddings + Atlas $vectorSearch"]
+    GROQ["Groq llama-3.3-70b<br/>no citations, no guardrails"]
+  end
+
+  S --> FE
+  FE -->|HTTPS + JWT| MODES
+  MODES --> BP
+  BP --> LLM
+  LLM --> RESP
+  RESP -->|answer + citations| FE
+
+  S3 -->|sync| KB
+  KB --- TITAN
+  KB --- OSS
+
+  BP -->|1 · retrieve| RET
+  RET --> KB
+  LLM -->|2 · generate| CONV
+  CONV --- GR
+
+  RESP --- AIDB
+  MODES --- LMSDB
+
+  BP -.->|BEDROCK_KB_ID unset| JINA
+  LLM -.->|USE_BEDROCK false| GROQ
