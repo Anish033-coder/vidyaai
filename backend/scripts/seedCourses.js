@@ -49,7 +49,7 @@ for (const title of titles) {
   const course = await Course.findOneAndUpdate(
     { title },
     { $setOnInsert: { title, category: "General", lectures: [] } },
-    { upsert: true, new: true }
+    { upsert: true, returnDocument: "after" }
   );
   results.push(course);
   console.log(`  ${course._id}  ${course.title}`);
