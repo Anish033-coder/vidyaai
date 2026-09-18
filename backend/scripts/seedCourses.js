@@ -16,9 +16,14 @@ import mongoose from "mongoose";
 
 const DEFAULT_TITLES = ["Economics — Unit 3", "Data Structures — Unit 3"];
 
-const titles = process.argv.slice(2).length
-  ? process.argv.slice(2)
-  : DEFAULT_TITLES;
+const argv = process.argv.slice(2);
+
+// --replace drops any course not named here. A course with no matching PDF in
+// the knowledge base retrieves nothing, so leaving stale ones in the picker
+// just gives you a way to demo an empty answer.
+const replace = argv.includes("--replace");
+const titles = argv.filter((a) => a !== "--replace");
+const wanted = titles.length ? titles : DEFAULT_TITLES;
 
 const uri = process.env.LMS_DB_URI;
 
@@ -43,7 +48,7 @@ console.log(`\nConnected to ${conn.name}\n`);
 
 const results = [];
 
-for (const title of titles) {
+for (const title of wanted) {
   // Upsert so re-running keeps the same id — re-seeding must not invalidate
   // the metadata sidecars already uploaded to S3.
   const course = await Course.findOneAndUpdate(
@@ -63,6 +68,14 @@ for (const c of results) {
   console.log(
     `  ${JSON.stringify({ metadataAttributes: { courseId: String(c._id) } })}\n`
   );
+}
+
+if (replace) {
+  const keep = results.map((c) => c._id);
+  const { deletedCount } = await Course.deleteMany({ _id: { $nin: keep } });
+  if (deletedCount) {
+    console.log(`Removed ${deletedCount} course(s) with no content behind them.\n`);
+  }
 }
 
 console.log("All courses now in the collection:");
