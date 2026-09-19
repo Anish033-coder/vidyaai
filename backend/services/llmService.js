@@ -24,7 +24,7 @@ export async function callLLM(prompt) {
   //   curl -s https://api.groq.com/openai/v1/models \
   //     -H "Authorization: Bearer $GROQ_API_KEY" | grep '"id"'
   const completion = await groq.chat.completions.create({
-    model: process.env.GROQ_MODEL_ID || "llama-3.1-8b-instant",
+    model: process.env.GROQ_MODEL_ID || "openai/gpt-oss-20b",
     messages: [
       {
         role: "user",
