@@ -3,6 +3,7 @@ dotenv.config();
 
 import Groq from "groq-sdk";
 import { callBedrock } from "./bedrockLlmService.js";
+import { normalizeResponse } from "../utils/normalizeResponse.js";
 
 const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY
@@ -16,7 +17,7 @@ export async function callLLM(prompt) {
 
   // Route to Amazon Bedrock when enabled; otherwise use Groq.
   if (process.env.USE_BEDROCK === "true") {
-    return callBedrock(prompt);
+    return normalizeResponse(await callBedrock(prompt));
   }
 
   // Groq retires model ids without notice, so this is configurable rather
@@ -43,7 +44,7 @@ export async function callLLM(prompt) {
     .trim();
 
   try {
-    return JSON.parse(text);
+    return normalizeResponse(JSON.parse(text));
   } catch (err) {
     console.error("LLM JSON parse failed:", text);
 
