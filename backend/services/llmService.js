@@ -19,8 +19,12 @@ export async function callLLM(prompt) {
     return callBedrock(prompt);
   }
 
+  // Groq retires model ids without notice, so this is configurable rather
+  // than hardcoded. List what your key can reach with:
+  //   curl -s https://api.groq.com/openai/v1/models \
+  //     -H "Authorization: Bearer $GROQ_API_KEY" | grep '"id"'
   const completion = await groq.chat.completions.create({
-    model: "llama-3.3-70b-versatile",
+    model: process.env.GROQ_MODEL_ID || "llama-3.1-8b-instant",
     messages: [
       {
         role: "user",
